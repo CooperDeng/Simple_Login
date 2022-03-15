@@ -1,3 +1,5 @@
+// This file was last edited by Chengfeng Deng at March 14, 2022
+// This is a simple login logic for a parking lot managment system, mainly acheived using the read file feature in fstream
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -5,6 +7,7 @@
 using namespace std;
 
 
+// This function is made for verifying if the user has logged into the system.
 bool LoggedInState() 
 {
 // standard username and password
@@ -18,11 +21,14 @@ bool LoggedInState()
 	cout << "Please enter your pass word:";
 	cin >> password;
 
+// Notice that in order to log into the system there has to be a txt file present
+// in the repository denoted. Feel free to change the repository to anywhere you want.
 	ifstream read("E:\\" + username + ".txt");
 
 	getline(read, un_v);
 	getline(read, pw_v);
 
+// Validating that the username and password matches.
 	if (un_v == username && pw_v == password) 
 	{
 		return true;
@@ -35,6 +41,8 @@ bool LoggedInState()
 }
 
 
+// The main function contains operations that allows user to interact with
+// the program by using terminal inputs.
 int main() 
 {
 	
@@ -56,6 +64,7 @@ int main()
 			cout << "Username cannot be same as password!" << endl;
 			main();
 		}
+		
 // Open file, write down the account detail, save it for later use.
 		ofstream file;
 		file.open("E:\\" + username + ".txt");
@@ -83,7 +92,7 @@ int main()
 		}
 	}
 
-// When User Enters stuff other than 1 or 2
+// When User Enters stuff other than 1 or 2, we throw an error no.99, because it is the best number in the world.
 	else 
 	{
 		try
